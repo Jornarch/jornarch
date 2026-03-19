@@ -12,7 +12,7 @@
     html, body {
       margin: 0;
       padding: 0;
-      background: #f7f7f7;
+      background: #f5f5f5;
       color: #111;
       font-family: Arial, Helvetica, sans-serif;
       overflow-x: hidden;
@@ -27,28 +27,26 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 28px 40px 18px 40px;
-      background: #f7f7f7;
-      position: relative;
-      z-index: 10;
+      padding: 28px 56px 10px 56px;
+      background: #f5f5f5;
     }
 
     .site-header-left,
     .site-header-right {
-      font-size: 17px;
+      font-size: 18px;
       letter-spacing: 1px;
       font-weight: 300;
     }
 
     .homepage-wrap {
       width: 100%;
-      padding: 0 0 40px 0;
+      padding-top: 8px;
+      padding-bottom: 36px;
     }
 
     .scroll-wrapper {
       width: 100%;
       overflow: hidden;
-      padding-top: 10px;
     }
 
     .horizontal-scroll-container {
@@ -56,9 +54,7 @@
       overflow-x: auto;
       overflow-y: hidden;
       white-space: nowrap;
-      scroll-behavior: auto;
       scrollbar-width: none;
-      cursor: default;
     }
 
     .horizontal-scroll-container::-webkit-scrollbar {
@@ -69,14 +65,14 @@
       display: inline-flex;
       align-items: center;
       gap: 28px;
-      padding: 0 80px;
+      padding: 0 48px;
     }
 
     .scroll-item {
-      text-decoration: none;
-      color: inherit;
       display: block;
       flex: 0 0 auto;
+      text-decoration: none;
+      color: inherit;
       opacity: 0;
       transform: translateY(20px);
       transition: opacity 0.7s ease, transform 0.7s ease;
@@ -88,79 +84,75 @@
     }
 
     .project-bg {
-      width: 980px;
-      height: 620px;
+      position: relative;
+      width: 1080px;
+      height: 600px;
       background-size: contain;
       background-repeat: no-repeat;
       background-position: center center;
-      position: relative;
-      display: block;
     }
 
     .project-title {
       position: absolute;
       left: 90px;
-      bottom: 88px;
-      font-size: 22px;
+      bottom: 55px;
+      font-size: 18px;
       font-weight: 700;
-      letter-spacing: 0.3px;
       color: #000;
     }
 
     .project-meta {
       position: absolute;
-      right: 80px;
-      bottom: 88px;
-      font-size: 16px;
-      font-weight: 400;
+      right: 70px;
+      bottom: 55px;
+      font-size: 14px;
       color: #111;
     }
 
     .bottom-nav {
-      width: 100%;
       display: flex;
       justify-content: center;
-      gap: 24px;
-      padding: 28px 40px 50px 40px;
+      gap: 20px;
+      padding: 18px 40px 30px 40px;
       flex-wrap: wrap;
     }
 
     .bottom-nav a {
       display: inline-block;
-      min-width: 240px;
-      text-align: center;
-      text-decoration: none;
+      min-width: 260px;
       background: #000;
       color: #fff;
-      padding: 16px 28px;
-      font-size: 18px;
+      text-decoration: none;
+      text-align: center;
+      padding: 16px 24px;
+      font-size: 16px;
       letter-spacing: 1px;
     }
 
     .bottom-nav a:hover {
-      opacity: 0.85;
+      opacity: 0.88;
     }
 
     @media (max-width: 1200px) {
       .project-bg {
-        width: 860px;
-        height: 560px;
+        width: 92vw;
+        height: 52vw;
       }
 
       .project-title {
-        left: 70px;
-        bottom: 70px;
+        left: 28px;
+        bottom: 24px;
       }
 
       .project-meta {
-        right: 60px;
-        bottom: 70px;
+        right: 28px;
+        bottom: 24px;
       }
     }
 
-    @media (max-width: 900px) {
+    @media (max-width: 768px) {
       .site-header {
-        padding: 20px 20px 12px 20px;
+        padding: 20px 20px 8px 20px;
       }
 
       .site-header-left,
@@ -169,42 +161,25 @@
       }
 
       .scroll-content {
-        gap: 18px;
-        padding: 0 24px;
-      }
-
-      .project-bg {
-        width: 92vw;
-        height: 62vw;
-        max-height: 520px;
+        padding: 0 20px;
+        gap: 16px;
       }
 
       .project-title {
-        left: 24px;
-        bottom: 24px;
-        font-size: 18px;
+        font-size: 16px;
       }
 
       .project-meta {
-        right: 24px;
-        bottom: 24px;
-        font-size: 14px;
-      }
-
-      .bottom-nav {
-        gap: 14px;
-        padding: 20px 20px 40px 20px;
+        font-size: 12px;
       }
 
       .bottom-nav a {
         min-width: 180px;
-        font-size: 16px;
       }
     }
   </style>
 </head>
 <body>
-
   <header class="site-header">
     <div class="site-header-left">PORTFOLIO</div>
     <div class="site-header-right">JORN CONNORS</div>
@@ -303,6 +278,5 @@
       autoScroll();
     });
   </script>
-
 </body>
 </html>
