@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Jorn Connors Portfolio</title>
+
   <style>
     * {
       box-sizing: border-box;
@@ -12,70 +13,109 @@
     html, body {
       margin: 0;
       padding: 0;
-      background: #f5f5f5;
-      color: #111;
-      font-family: Arial, Helvetica, sans-serif;
+      background: #f7f7f7;
+      color: #000;
       overflow-x: hidden;
     }
 
     body {
-      min-height: 100vh;
+      font-family: Arial, sans-serif;
     }
 
-    .site-header {
+    .page-wrap {
+      width: 100%;
+      padding-top: 29px;
+    }
+
+    .header-row {
       width: 100%;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 28px 56px 10px 56px;
-      background: #f5f5f5;
+      padding: 0 60px 0 60px;
     }
 
-    .site-header-left,
-    .site-header-right {
-      font-size: 18px;
+    .header-left,
+    .header-right {
+      font-family: "Eurostile", Arial, sans-serif;
+      font-size: 17px;
       letter-spacing: 1px;
-      font-weight: 300;
+      font-weight: 400;
+      color: #3a312b;
     }
 
-    .homepage-wrap {
+    .header-left {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .header-left img {
+      width: 24px;
+      height: auto;
+      display: block;
+    }
+
+    .main-content {
       width: 100%;
-      padding-top: 8px;
-      padding-bottom: 36px;
+      margin: 0;
+      padding: 0;
+    }
+
+    .scroll-section {
+      margin-top: 8px;
     }
 
     .scroll-wrapper {
-      width: 100%;
-      overflow: hidden;
+      width: 100vw;
+      max-width: 100vw;
+      margin-left: calc(50% - 50vw);
+      margin-right: calc(50% - 50vw);
+      position: relative;
     }
 
     .horizontal-scroll-container {
       width: 100%;
       overflow-x: auto;
       overflow-y: hidden;
+      padding-bottom: 18px;
+      scrollbar-gutter: stable;
       white-space: nowrap;
-      scrollbar-width: none;
+      position: relative;
     }
 
     .horizontal-scroll-container::-webkit-scrollbar {
-      display: none;
+      height: 10px;
+    }
+
+    .horizontal-scroll-container::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    .horizontal-scroll-container::-webkit-scrollbar-thumb {
+      background-color: #000;
+      border-radius: 10px;
+    }
+
+    .horizontal-scroll-container {
+      scrollbar-width: thin;
+      scrollbar-color: #000 transparent;
     }
 
     .scroll-content {
-      display: inline-flex;
+      display: flex;
       align-items: center;
-      gap: 28px;
-      padding: 0 48px;
+      flex-wrap: nowrap;
+      gap: 0;
     }
 
     .scroll-item {
-      display: block;
       flex: 0 0 auto;
       text-decoration: none;
-      color: inherit;
       opacity: 0;
-      transform: translateY(20px);
-      transition: opacity 0.7s ease, transform 0.7s ease;
+      transform: translateY(32px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+      color: inherit;
     }
 
     .scroll-item.animate-in {
@@ -84,150 +124,204 @@
     }
 
     .project-bg {
-      position: relative;
-      width: 1080px;
-      height: 600px;
-      background-size: contain;
       background-repeat: no-repeat;
-      background-position: center center;
+      background-position: center;
+      background-size: contain;
+      position: relative;
+      height: 580px;
+      aspect-ratio: 2001 / 1600;
+      transition: opacity 0.3s ease;
     }
 
-    .project-title {
+    .project-bg.englewood {
+      aspect-ratio: 3201 / 1600;
+    }
+
+    .project-title,
+    .project-meta {
       position: absolute;
-      left: 90px;
-      bottom: 55px;
-      font-size: 18px;
-      font-weight: 700;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      pointer-events: none;
+      font-family: "Eurostile", Arial, sans-serif;
       color: #000;
     }
 
+    .project-title {
+      bottom: 14px;
+      left: 22px;
+      font-weight: 600;
+      font-size: 17px;
+    }
+
     .project-meta {
-      position: absolute;
-      right: 70px;
-      bottom: 55px;
+      bottom: 14px;
+      right: 22px;
       font-size: 14px;
-      color: #111;
+      font-weight: 400;
+    }
+
+    .project-bg:hover .project-title,
+    .project-bg:hover .project-meta {
+      opacity: 1;
+    }
+
+    .scroll-content:hover .project-bg:not(:hover) {
+      opacity: 0.45;
     }
 
     .bottom-nav {
+      width: 100%;
       display: flex;
       justify-content: center;
-      gap: 20px;
-      padding: 18px 40px 30px 40px;
-      flex-wrap: wrap;
+      align-items: center;
+      gap: 18px;
+      margin-top: 43px;
+      padding: 0 40px 50px 40px;
+      flex-wrap: nowrap;
     }
 
     .bottom-nav a {
-      display: inline-block;
-      min-width: 260px;
-      background: #000;
-      color: #fff;
+      display: block;
       text-decoration: none;
-      text-align: center;
-      padding: 16px 24px;
-      font-size: 16px;
-      letter-spacing: 1px;
     }
 
-    .bottom-nav a:hover {
-      opacity: 0.88;
+    .bottom-nav img {
+      display: block;
+      width: 320px;
+      max-width: 100%;
+      height: auto;
+      transition: filter 0.25s ease, transform 0.25s ease;
     }
 
-    @media (max-width: 1200px) {
+    .bottom-nav a:hover img {
+      filter: invert(1);
+    }
+
+    @media (max-width: 1100px) {
+      .header-row {
+        padding: 0 24px 0 24px;
+      }
+
       .project-bg {
-        width: 92vw;
-        height: 52vw;
+        height: 420px;
       }
 
-      .project-title {
-        left: 28px;
-        bottom: 24px;
+      .bottom-nav {
+        gap: 12px;
+        padding: 0 20px 40px 20px;
       }
 
-      .project-meta {
-        right: 28px;
-        bottom: 24px;
+      .bottom-nav img {
+        width: 30vw;
       }
     }
 
     @media (max-width: 768px) {
-      .site-header {
-        padding: 20px 20px 8px 20px;
+      .page-wrap {
+        padding-top: 18px;
       }
 
-      .site-header-left,
-      .site-header-right {
-        font-size: 14px;
+      .header-row {
+        padding: 0 16px 0 16px;
       }
 
-      .scroll-content {
-        padding: 0 20px;
-        gap: 16px;
+      .header-left,
+      .header-right {
+        font-size: 13px;
+      }
+
+      .header-left img {
+        width: 18px;
+      }
+
+      .project-bg {
+        height: 300px;
       }
 
       .project-title {
-        font-size: 16px;
+        font-size: 14px;
       }
 
       .project-meta {
         font-size: 12px;
       }
 
-      .bottom-nav a {
-        min-width: 180px;
+      .bottom-nav {
+        flex-wrap: wrap;
+        margin-top: 28px;
+      }
+
+      .bottom-nav img {
+        width: 88vw;
       }
     }
   </style>
 </head>
 <body>
-  <header class="site-header">
-    <div class="site-header-left">PORTFOLIO</div>
-    <div class="site-header-right">JORN CONNORS</div>
-  </header>
-
-  <main class="homepage-wrap">
-    <div class="scroll-wrapper">
-      <div class="horizontal-scroll-container">
-        <div class="scroll-content">
-
-          <a href="https://jornarch.com/project-5/" class="scroll-item">
-            <div class="project-bg" style="background-image: url('https://jornarch.com/wp-content/uploads/2026/01/Artboard-1@4x-4.png');">
-              <span class="project-title">RIVER CHAPEL</span>
-              <div class="project-meta">Fall 2025</div>
-            </div>
-          </a>
-
-          <a href="https://jornarch.com/project-2/" class="scroll-item">
-            <div class="project-bg" style="background-image: url('https://jornarch.com/wp-content/uploads/2025/10/Artboard-1@4x.png');">
-              <span class="project-title">ENGLEWOOD VILLAGE</span>
-              <div class="project-meta">Fall/Spring 2025</div>
-            </div>
-          </a>
-
-          <a href="https://jornarch.com/project-1/" class="scroll-item">
-            <div class="project-bg" style="background-image: url('https://jornarch.com/wp-content/uploads/2025/10/Artboard-1@4x-3.png');">
-              <span class="project-title">FIELDHOUSE</span>
-              <div class="project-meta">Fall 2023</div>
-            </div>
-          </a>
-
-          <a href="https://jornarch.com/project-5/" class="scroll-item">
-            <div class="project-bg" style="background-image: url('https://jornarch.com/wp-content/uploads/2025/10/Artboard-1@4x-4.png');">
-              <span class="project-title">COACH HOUSE</span>
-              <div class="project-meta">Fall 2022</div>
-            </div>
-          </a>
-
-        </div>
+  <div class="page-wrap">
+    <header class="header-row">
+      <div class="header-left">
+        <img src="https://jornarch.com/wp-content/uploads/2026/03/logo.png" alt="Logo" onerror="this.style.display='none'">
+        <span>PORTFOLIO</span>
       </div>
-    </div>
+      <div class="header-right">JORN CONNORS</div>
+    </header>
 
-    <nav class="bottom-nav">
-      <a href="#">MODELS</a>
-      <a href="#">ART</a>
-      <a href="#">RESUME</a>
-    </nav>
-  </main>
+    <main class="main-content">
+      <section class="scroll-section">
+        <div class="scroll-wrapper">
+          <div class="horizontal-scroll-container">
+            <div class="scroll-content">
+
+              <a href="https://jornarch.com/project-5/" class="scroll-item">
+                <div class="project-bg englewood" style="background-image: url('https://jornarch.com/wp-content/uploads/2026/01/Artboard-1@4x-4.png');">
+                  <span class="project-title">RIVER CHAPEL</span>
+                  <div class="project-meta">Fall 2025</div>
+                </div>
+              </a>
+
+              <a href="https://jornarch.com/project-2/" class="scroll-item">
+                <div class="project-bg englewood" style="background-image: url('https://jornarch.com/wp-content/uploads/2025/10/Artboard-1@4x.png');">
+                  <span class="project-title">ENGLEWOOD VILLAGE</span>
+                  <div class="project-meta">Fall/Spring 2025</div>
+                </div>
+              </a>
+
+              <a href="https://jornarch.com/project-1/" class="scroll-item">
+                <div class="project-bg fieldhouse" style="background-image: url('https://jornarch.com/wp-content/uploads/2025/10/Artboard-1@4x-3.png');">
+                  <span class="project-title">FIELDHOUSE</span>
+                  <div class="project-meta">Fall 2023</div>
+                </div>
+              </a>
+
+              <a href="https://jornarch.com/project-5/" class="scroll-item">
+                <div class="project-bg coachhouse" style="background-image: url('https://jornarch.com/wp-content/uploads/2025/10/Artboard-1@4x-4.png');">
+                  <span class="project-title">COACH HOUSE</span>
+                  <div class="project-meta">Fall 2022</div>
+                </div>
+              </a>
+
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="bottom-nav">
+        <a href="https://jornarch.com/models/">
+          <img src="https://jornarch.com/wp-content/uploads/2026/01/MODELS-1-1024x133.png" alt="Models">
+        </a>
+
+        <a href="https://jornarch.com/art-3/">
+          <img src="https://jornarch.com/wp-content/uploads/2026/01/ART-1-1024x133.png" alt="Art">
+        </a>
+
+        <a href="https://jornarch.com/resume/">
+          <img src="https://jornarch.com/wp-content/uploads/2026/01/RESUME-1-1024x133.png" alt="Resume">
+        </a>
+      </section>
+    </main>
+  </div>
 
   <script>
     document.addEventListener('DOMContentLoaded', () => {
@@ -272,7 +366,7 @@
       blocks.forEach((el, index) => {
         setTimeout(() => {
           el.classList.add('animate-in');
-        }, index * 160);
+        }, index * 200);
       });
 
       autoScroll();
